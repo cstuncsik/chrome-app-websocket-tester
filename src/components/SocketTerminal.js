@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TextField from 'material-ui/lib/text-field';
-import RaisedButton from 'material-ui/lib/raised-button';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
 import SocketTerminalList from './SocketTerminalList';
 import { ConnectionStatus } from '../constant/Constants';
@@ -44,14 +44,14 @@ class SocketTerminal extends React.Component {
     const connectionType = this.props.parameters.type;
     return (
       <div>
-        <Row className="relative-container">
-          <Column xs={8}>
+        <Row>
+          <Column xs={12}>
             <TextField ref="messageText" disabled={disableChanges}
               int fullWidth floatingLabelText="Message"
               onKeyUp={(event) => this.messageTextFieldListener(event)}
             />
           </Column>
-          <Column xs={4} className="form-bottom-element">
+          <Column xs={12}>
             <RaisedButton disabled={disableChanges} label="Send" primary
               onClick={() => this.sendMessage()}
             />

@@ -9,6 +9,7 @@ import App from './components/Main';
 import makeStore from './stores/AppStore';
 import StoreHelper from './helpers/StorageHelper';
 import { StorageAction } from './actions/ActionsType';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -27,6 +28,8 @@ storeHelper.readState((offlineState) => {
 // Render the main component into the dom
 ReactDOM.render(
   <Provider store={store}>
+    <MuiThemeProvider>
     <App />
+    </MuiThemeProvider>
   </Provider>
   , document.getElementById('app'));

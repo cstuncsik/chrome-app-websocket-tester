@@ -1,10 +1,10 @@
 import React from 'react';
-import SelectField from 'material-ui/lib/select-field';
-import TextField from 'material-ui/lib/text-field';
-import RaisedButton from 'material-ui/lib/raised-button';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import SelectField from 'material-ui/SelectField';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import MenuItem from 'material-ui/MenuItem';
 import { connect } from 'react-redux';
-import RemoveIcon from 'material-ui/lib/svg-icons/content/remove-circle';
+import RemoveIcon from 'material-ui/svg-icons/content/remove-circle';
 import { ConnectionType, ConnectionStatus } from '../constant/Constants';
 import { SocketContainerAction } from '../actions/ActionsType';
 import Helper from '../helpers/GlobalHelpers';
@@ -65,15 +65,13 @@ class SocketSetting extends React.Component {
     if (this.props.parameters.type === ConnectionType.io) {
       const channelValue = this.props.parameters.channel;
       return (
-        <Row >
-          <Column xs={3}>
+          <Column xs={4}>
             <TextField value={channelValue} hint floatingLabelText="Channel"
               onChange={(event) => this.handleChannelChange(event)}
               disabled={disableChanges}
               style={textFieldStyle}
             />
           </Column>
-        </Row>
       );
     }
     return null;
@@ -107,8 +105,8 @@ class SocketSetting extends React.Component {
             /></span>
           </h2>
         </Row>
-        <Row className="relative-container">
-          <Column xs={3}>
+        <Row>
+          <Column xs={4}>
             <SelectField
               style={textFieldStyle}
               disabled={disableChanges}
@@ -120,7 +118,7 @@ class SocketSetting extends React.Component {
               <MenuItem key={2} value={ConnectionType.io} primaryText="Socket.IO" />
             </SelectField>
           </Column>
-          <Column xs={6}>
+          <Column xs={4}>
             <TextField value={hostValue} hint floatingLabelText="Location"
               onChange={(event) => this.handleHostChange(event)}
               disabled={disableChanges}
@@ -128,13 +126,15 @@ class SocketSetting extends React.Component {
               style={textFieldStyle}
             />
           </Column>
-          <Column xs={2} className="form-bottom-element" style={buttonOnErrorStyle}>
+          {channelInput}
+        </Row>
+        <Row>
+          <Column xs={3} style={buttonOnErrorStyle}>
             <RaisedButton label={buttonLabel} primary
               onClick={() => this.connectToWebSocket()}
             />
           </Column>
         </Row>
-        {channelInput}
       </div>
     );
   }
