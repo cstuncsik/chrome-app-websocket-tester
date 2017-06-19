@@ -51,6 +51,8 @@ class SocketTerminal extends React.Component {
               onKeyUp={(event) => this.messageTextFieldListener(event)}
             />
           </Column>
+        </Row>
+        <Row>
           <Column xs={12}>
             <RaisedButton disabled={disableChanges} label="Send" primary
               onClick={() => this.sendMessage()}

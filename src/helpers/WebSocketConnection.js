@@ -14,6 +14,9 @@ class WebSocketConnection {
     this.dispatch = dispatch;
     this.setListeners();
   }
+  updateChannel(channel) {
+    this.channel = channel
+  }
 
   send(message) {
     this.websocket.send(message);

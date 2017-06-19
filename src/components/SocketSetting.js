@@ -45,6 +45,7 @@ class SocketSetting extends React.Component {
       type: SocketContainerAction.CHANGE_CHANNEL,
       value: event.target.value,
     });
+    this.props.webSocket.updateChannel(event.target.value)
   }
 
   connectToWebSocket() {
@@ -61,14 +62,13 @@ class SocketSetting extends React.Component {
     }
   }
 
-  generateChannelInput(disableChanges) {
+  generateChannelInput() {
     if (this.props.parameters.type === ConnectionType.io) {
       const channelValue = this.props.parameters.channel;
       return (
           <Column xs={4}>
             <TextField value={channelValue} hint floatingLabelText="Channel"
               onChange={(event) => this.handleChannelChange(event)}
-              disabled={disableChanges}
               style={textFieldStyle}
             />
           </Column>
@@ -89,7 +89,7 @@ class SocketSetting extends React.Component {
     const hostValue = this.props.parameters.host;
     const disableChanges = this.props.status === ConnectionStatus.CONNECTED;
     const buttonLabel = this.props.status === ConnectionStatus.CONNECTED ? 'Disconnect' : 'Connect';
-    const channelInput = this.generateChannelInput(disableChanges);
+    const channelInput = this.generateChannelInput();
     const iconColor = '#aaa';
     let buttonOnErrorStyle = {};
     if (this.state.hostErrorMessage !== '') {

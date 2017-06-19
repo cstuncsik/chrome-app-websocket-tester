@@ -1,4 +1,4 @@
-import * as io from 'socket.io-client';
+import io from 'socket.io-client';
 import { SocketConnectionAction } from '../actions/ActionsType';
 import { MessageType } from '../constant/Constants';
 import Helper from '../helpers/GlobalHelpers';
@@ -6,10 +6,13 @@ import Helper from '../helpers/GlobalHelpers';
 class SocketIOConnection {
 
   connect(wsUri, dispatch, channel) {
-    this.websocket = io.connect(wsUri);
+    this.websocket = io(wsUri);
     this.dispatch = dispatch;
     this.channel = channel;
     this.setListeners();
+  }
+  updateChannel(channel) {
+    this.channel = channel
   }
 
   send(message) {
